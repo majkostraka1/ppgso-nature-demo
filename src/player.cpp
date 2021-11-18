@@ -10,7 +10,7 @@ std::unique_ptr<ppgso::Shader> Player::shader;
 Player::Player() {
     if (!shader) shader = std::make_unique<ppgso::Shader>(color_vert_glsl, color_frag_glsl);
     if (!texture) texture = std::make_unique<ppgso::Texture>(ppgso::image::loadBMP("penguin.bmp"));
-    if (!mesh) mesh = std::make_unique<ppgso::Mesh>("penguin.obj");
+    if (!mesh) mesh = std::make_unique<ppgso::Mesh>("rat.obj");
 
     scale = {1.5, 1.5, 1.5};
     position.y = 0.01;

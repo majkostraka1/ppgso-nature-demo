@@ -12,6 +12,18 @@ void Scene::scene1() {
     player.position = {0,0.01,-1};
     player.rotation = {0,180,0};
 
+    glm::vec3 p = {1.5, 2, -5}; // bear
+    glm::vec3 r = {0, 0, 0};
+    glm::vec3 s = {1, 1, 1};
+    auto obj = std::make_unique<staticObjects>(p, r, s, 1);
+    objects.push_back(move(obj));
+
+    p = {15, 2, -20}; // rat
+    r = {0, 0, 0};
+    s = {10, 10, 10};
+    obj = std::make_unique<staticObjects>(p, r, s, 2);
+    objects.push_back(move(obj));
+
     for (int i = 0; i < 50; i++) { // trees
         glm::vec3 p = {0,0, 0};
         glm::vec3 r = {0, 0, 0};
