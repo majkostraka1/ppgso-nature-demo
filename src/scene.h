@@ -1,17 +1,16 @@
 #ifndef scene_H
 #define scene_H
 
-
 #include <list>
 #include <memory>
 
 #include "camera.h"
-#include "staticObjects.h"
 #include "object.h"
 #include "player.h"
+#include "staticObjects.h"
 
-
-class Scene {
+class Scene
+{
 public:
     Camera camera;
 
@@ -31,6 +30,5 @@ public:
 
     void render();
 };
-
 
 #endif
