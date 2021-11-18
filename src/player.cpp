@@ -10,11 +10,12 @@ Player::Player()
     if (!shader)
         shader = std::make_unique<ppgso::Shader>(color_vert_glsl, color_frag_glsl);
     if (!texture)
-        texture = std::make_unique<ppgso::Texture>(ppgso::image::loadBMP("penguin.bmp"));
+        texture = std::make_unique<ppgso::Texture>(ppgso::image::loadBMP("sphere.bmp"));
     if (!mesh)
-        mesh = std::make_unique<ppgso::Mesh>("rat.obj");
+        mesh = std::make_unique<ppgso::Mesh>("lowpolymountains.obj");
 
-    scale = {1.5f, 1.5f, 1.5f};
+    //scale = {1.5f, 1.5f, 1.5f};
+    scale = {0.01f, 0.01f, 0.01f};
     position.y = 0.01f;
 }
 
@@ -54,7 +55,7 @@ bool Player::update(Scene &scene, float dTime)
 
     animationTime += dTime;
 
-    if (currKeyframe >= 3 || deltaPosition.x == 0 && deltaPosition.z == 0)
+    if (currKeyframe >= 3 || (deltaPosition.x == 0 && deltaPosition.z == 0))
     {
         animationTime = 0;
         currKeyframe = 0;

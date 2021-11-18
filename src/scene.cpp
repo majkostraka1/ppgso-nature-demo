@@ -14,13 +14,13 @@ void Scene::scene1()
     glm::vec3 p = {1.5, 2, -5}; // bear
     glm::vec3 r = {0, 0, 0};
     glm::vec3 s = {1, 1, 1};
-    auto obj = std::make_unique<staticObjects>(p, r, s, 1);
-    objects.push_back(move(obj));
+    //auto obj = std::make_unique<staticObjects>(p, r, s, 1);
+    //objects.push_back(move(obj));
 
     p = {15, 2, -20}; // rat
     r = {0, 0, 0};
     s = {10, 10, 10};
-    obj = std::make_unique<staticObjects>(p, r, s, 2);
+    auto obj = std::make_unique<staticObjects>(p, r, s, 2);
     objects.push_back(move(obj));
 
     for (int i = 0; i < 50; i++)
@@ -34,12 +34,12 @@ void Scene::scene1()
         {
             collided = false;
             float x = glm::linearRand(-30.f, 30.f);
-            ;
+
             float z = glm::linearRand(-60.f, 60.f);
             tree->position = {x, 2, z};
             tree->updateCollider();
             for (auto &obj : objects)
-            { // check for some collision with another objects
+            {
                 if (obj.get()->collision(tree->collider))
                 {
                     collided = true;
