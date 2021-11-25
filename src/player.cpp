@@ -27,7 +27,7 @@ glm::vec3 Player::handleKeys(bool keys[5], glm::vec3 back, float dTime)
 
     glm::vec3 side = {direction.z, 0, -direction.x};
 
-    const float speed = 5.0f * dTime;
+    const float speed = 8.0f * dTime;
     glm::vec3 dPos = {0, 0, 0};
 
     if (keys[1])

@@ -19,9 +19,9 @@ public:
 
     Player player;
 
-    glm::vec3 lightPosition = {20.0f, 20.0f, 20.0f};
+    glm::vec3 lightPosition = {5.0f, 5.0f, 5.0f};
     glm::vec3 lightColor = {1.2f, 1.0f, 0.8f};
-    glm::vec3 lightDirection = {1.0f, 1.0f, 1.0f};
+    glm::vec3 lightDirection = {0, 0, 1.0f};
 
     std::list<std::unique_ptr<Object>> objects;
 

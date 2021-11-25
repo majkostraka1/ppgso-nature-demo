@@ -38,20 +38,20 @@ void main() {
   vec3 lightDir = normalize(LightPosition - FragPos);
 
   // Compute ambient lightning
-  float ambientStrength = 0.25f;
+  float ambientStrength = 0.25;
   vec3 ambient = ambientStrength * LightColor;
 
-  // Compute diffuse lighting
+  // Compute diffuse lightning
   //float diffuse = max(dot(normal, vec4(normalize(LightDirection), 1.0f)), 0.0f);
   float diff = max(dot(norm, lightDir), 0.0);
   vec3 diffuse = diff * LightColor;
-  vec3 objectColor = texture(Texture, vec2(texCoord.x, 1.0 - texCoord.y) + TextureOffset).xyz;
+  vec3 objectColor = texture(Texture, vec2(texCoord.x, texCoord.y) + TextureOffset).xyz;
 
   // Compute specular lightning
-  float specularStrength = 0.1;
+  float specularStrength = 0.5;
   vec3 viewDir = normalize(LightPosition - FragPos);
   vec3 reflectDir = reflect(-LightDirection, norm);
-  float spec = pow(max(dot(viewDir, reflectDir), 0.0), 1);
+  float spec = pow(max(dot(viewDir, reflectDir), 0.0), 3);
   vec3 specular = specularStrength * spec * LightColor;
 
   vec3 phong = (ambient + diffuse + specular) * objectColor;

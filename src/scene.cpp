@@ -51,6 +51,18 @@ void Scene::scene1()
     auto sun = std::make_unique<staticObjects>(p, r, s, 3);
     objects.push_back(move(sun));
 
+    p = {0, 0.5, 20}; // tree
+    r = {0, 0, 0};
+    s = {1, 1, 1};
+    auto tree4 = std::make_unique<staticObjects>(p, r, s, 6);
+    objects.push_back(move(tree4));
+
+    p = {0, 0, -88}; // mountains
+    r = {0, 0, 0};
+    s = {4.8, 4.8, 4.8};
+    auto mountains = std::make_unique<staticObjects>(p, r, s, 5);
+    objects.push_back(move(mountains));
+
     p = {0, -0.5, 0}; // ground
     r = {0, 0, 0};
     s = {100, 1, 100};
