@@ -10,12 +10,11 @@ Player::Player()
     if (!shader)
         shader = std::make_unique<ppgso::Shader>(color_vert_glsl, color_frag_glsl);
     if (!texture)
-        texture = std::make_unique<ppgso::Texture>(ppgso::image::loadBMP("sphere.bmp"));
+        texture = std::make_unique<ppgso::Texture>(ppgso::image::loadBMP("rat.bmp"));
     if (!mesh)
-        mesh = std::make_unique<ppgso::Mesh>("lowpolymountains.obj");
+        mesh = std::make_unique<ppgso::Mesh>("rat.obj");
 
-    //scale = {1.5f, 1.5f, 1.5f};
-    scale = {0.01f, 0.01f, 0.01f};
+    scale = {0.05f, 0.05f, 0.05f};
     position.y = 0.01f;
 }
 
@@ -51,15 +50,15 @@ bool Player::update(Scene &scene, float dTime)
     glm::vec3 deltaPosition = handleKeys(scene.keys, scene.camera.back, dTime);
 
     if (deltaPosition.x != 0 || deltaPosition.z != 0)
-        rotation.y = -scene.cursor.yaw + 90;
+        rotation.y = -scene.cursor.yaw;
 
     animationTime += dTime;
 
-    if (currKeyframe >= 3 || (deltaPosition.x == 0 && deltaPosition.z == 0))
+    /*if (currKeyframe >= 3 || deltaPosition.x == 0 && deltaPosition.z == 0)
     {
         animationTime = 0;
         currKeyframe = 0;
-    }
+    }*/
 
     glm::vec3 lastPosition = position;
     position += deltaPosition;
@@ -94,6 +93,8 @@ void Player::render(Scene &scene)
     shader->setUniform("ViewMatrix", scene.camera.viewMatrix);
     shader->setUniform("ModelMatrix", modelMatrix);
     shader->setUniform("Texture", *texture);
+    shader->setUniform("LightPosition", scene.lightPosition);
+    shader->setUniform("LightColor", scene.lightColor);
     shader->setUniform("CameraPosition", scene.camera.position);
 
     mesh->render();

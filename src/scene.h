@@ -11,10 +11,16 @@
 
 class Scene
 {
+private:
+    glm::vec3 LColor = {1,1,1};
 public:
     Camera camera;
 
     Player player;
+
+    glm::vec3 lightPosition;
+
+    glm::vec3 lightColor = {1.2f, 1, .8f};
 
     std::list<std::unique_ptr<Object>> objects;
 
