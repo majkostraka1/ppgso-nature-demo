@@ -32,6 +32,7 @@ public:
         glEnable(GL_DEPTH_TEST);
         glDepthFunc(GL_LEQUAL);
         glEnable(GL_CULL_FACE);
+        glEnable(GL_COLOR_MATERIAL); // new
         glFrontFace(GL_CCW);
         glCullFace(GL_BACK);
         glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);

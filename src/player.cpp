@@ -8,7 +8,7 @@ std::unique_ptr<ppgso::Shader> Player::shader;
 Player::Player()
 {
     if (!shader)
-        shader = std::make_unique<ppgso::Shader>(color_vert_glsl, color_frag_glsl);
+        shader = std::make_unique<ppgso::Shader>(diffuse_vert_glsl, diffuse_frag_glsl);
     if (!texture)
         texture = std::make_unique<ppgso::Texture>(ppgso::image::loadBMP("rat.bmp"));
     if (!mesh)
@@ -94,6 +94,7 @@ void Player::render(Scene &scene)
     shader->setUniform("ModelMatrix", modelMatrix);
     shader->setUniform("Texture", *texture);
     shader->setUniform("LightPosition", scene.lightPosition);
+    shader->setUniform("LightDirection", scene.lightDirection);
     shader->setUniform("LightColor", scene.lightColor);
     shader->setUniform("CameraPosition", scene.camera.position);
 

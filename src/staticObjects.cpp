@@ -9,7 +9,7 @@ char *staticObjects::meshName[OBJ_COUNT] = {"tree.obj", "bear.obj", "rat.obj", "
 staticObjects::staticObjects(glm::vec3 p, glm::vec3 r, glm::vec3 s, uint8_t id)
 {
     if (!shader)
-        shader = std::make_unique<ppgso::Shader>(color_vert_glsl, color_frag_glsl);
+        shader = std::make_unique<ppgso::Shader>(diffuse_vert_glsl, diffuse_frag_glsl);
     if (!texture[id])
         texture[id] = std::make_unique<ppgso::Texture>(ppgso::image::loadBMP(textureName[id]));
     if (!mesh[id])
@@ -45,12 +45,13 @@ void staticObjects::render(Scene &scene)
 
     shader->setUniform("ProjectionMatrix", scene.camera.projectionMatrix);
     shader->setUniform("ViewMatrix", scene.camera.viewMatrix);
+    shader->setUniform("ViewPos", scene.camera.position); // new
     shader->setUniform("ModelMatrix", modelMatrix);
-    //shader->setUniform("LightDirection", normalize(glm::vec3{1.0f, -1.0f, 1.0f}));
-    shader->setUniform("Texture", *texture[id]);
+    shader->setUniform("LightDirection", scene.lightDirection);
     shader->setUniform("LightPosition", scene.lightPosition);
     shader->setUniform("LightColor", scene.lightColor);
-    //shader->setUniform("CameraPosition", scene.camera.position);
+    shader->setUniform("Texture", *texture[id]);
+    shader->setUniform("CameraPosition", scene.camera.position);
 
     mesh[id]->render();
 }

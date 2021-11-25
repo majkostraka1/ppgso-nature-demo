@@ -7,6 +7,8 @@
 #include <ppgso/ppgso.h>
 #include <shaders/color_frag_glsl.h>
 #include <shaders/color_vert_glsl.h>
+#include <shaders/diffuse_frag_glsl.h>
+#include <shaders/diffuse_vert_glsl.h>
 #include <shaders/texture_frag_glsl.h>
 #include <shaders/texture_vert_glsl.h>
 

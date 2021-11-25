@@ -10,7 +10,6 @@ void Scene::scene1()
 {
     player.position = {0, 0.01, -1};
     player.rotation = {0, 180, 0};
-    lightPosition = {0, 6, 0};
     LColor = {1, 1, 0.8};
 
     glm::vec3 p = {1.5, 2, -5}; // bear
@@ -29,10 +28,10 @@ void Scene::scene1()
         while (collided)
         {
             collided = false;
-            float x = glm::linearRand(-30.f, 30.f);
-            ;
-            float z = glm::linearRand(-60.f, 60.f);
+            float x = glm::linearRand(-45.0f, 45.0f);
+            float z = glm::linearRand(-45.0f, 45.0f);
             tree->position = {x, 2, z};
+
             tree->updateCollider();
             for (auto &obj : objects)
             { // check for some collision with another objects
@@ -48,23 +47,22 @@ void Scene::scene1()
 
     p = lightPosition; // sun
     r = {0, 0, 0};
-    s = {10, 10, 10};
+    s = {5, 5, 5};
     auto sun = std::make_unique<staticObjects>(p, r, s, 3);
     objects.push_back(move(sun));
 
-    p = {0, -0.5, -30}; // ground
+    p = {0, -0.5, 0}; // ground
     r = {0, 0, 0};
-    s = {40, 1, 60};
+    s = {100, 1, 100};
     auto ground = std::make_unique<staticObjects>(p, r, s, 4);
     objects.push_back(move(ground));
 }
 
 bool Scene::update(float dTime)
 {
-    std::cout<< lightColor.x << " " << lightColor.y << " " << lightColor.z<<std::endl;
-
     camera.update(*this, dTime);
     player.update(*this, dTime);
+
     auto i = std::begin(objects);
     while (i != std::end(objects))
     {
